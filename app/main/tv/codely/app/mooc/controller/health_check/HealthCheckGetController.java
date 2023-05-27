@@ -4,13 +4,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public final class HealthCheckGetController {
 
     @RequestMapping("/health-check")
-    public HashMap<String, String> index() {
-        HashMap<String, String> status = new HashMap<>();
+    public Map<String, String> handle() {
+        Map<String, String> status = new HashMap<>();
         status.put("status", "ok");
 
         return status;

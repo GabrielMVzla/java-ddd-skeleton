@@ -15,6 +15,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/*simula que hacemos una request sin tener que comernos toda la capa http a una petición, nos ahorramos la llamada, no tenemos que ir y hacer una petición a nuestra API, sino que se hace directamente al controller */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
