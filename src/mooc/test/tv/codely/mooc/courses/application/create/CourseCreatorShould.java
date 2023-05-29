@@ -19,7 +19,7 @@ final class CourseCreatorShould {
         Course course = new Course(id, name, duration);
 
         //llamar caso de uso
-        creator.create(course.id(), course.name(), course.duration());
+        creator.create(new CreateCourseRequest(course.id(), course.name(), course.duration()));
 
         //verifica que se llama "save", eso es lo que estamos verificando, por otro lado se valida que sí se guarda pero ya es en test de integración
         verify(repository, atLeastOnce()).save(course);
