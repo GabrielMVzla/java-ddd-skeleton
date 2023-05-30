@@ -1,6 +1,8 @@
 package tv.codely.mooc.courses.domain;
 
-public class CourseId extends Identifier{
+import tv.codely.shared.domain.Identifier;
+
+public class CourseId extends Identifier {
 
     public CourseId(String value){
         super(value);

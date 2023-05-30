@@ -1,48 +1,17 @@
 package tv.codely.mooc.courses.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Objects;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public final class Course {
-    private String id;
-    private String name;
-    private String duration;
 
-    public Course() {}
-
-    public Course(String id, String name, String duration) {
-        this.id       = id;
-        this.name     = name;
-        this.duration = duration;
-    }
-
-    public String id() {
-        return id;
-    }
-
-    public String name() {
-        return name;
-    }
-
-    public String duration() {
-        return duration;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Course)) {
-            return false;
-        }
-        Course course = (Course) o;
-        return Objects.equals(id, course.id) &&
-               Objects.equals(name, course.name) &&
-               Objects.equals(duration, course.duration);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, duration);
-    }
+    private CourseId id;
+    private CourseName name;
+    private CourseDuration duration;
 }

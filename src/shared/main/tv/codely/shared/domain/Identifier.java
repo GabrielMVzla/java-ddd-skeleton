@@ -1,4 +1,4 @@
-package tv.codely.mooc.courses.domain;
+package tv.codely.shared.domain;
 
 import lombok.EqualsAndHashCode;
 
@@ -12,11 +12,11 @@ public abstract class Identifier {
 //    private UUID value;
 
     public Identifier(String value){
-        ensureValidUUid(value);
+        ensureValidUuid(value);
         this.value = value;
     }
 
-    private void ensureValidUUid(String value) {
+    private void ensureValidUuid(String value) {
         UUID.fromString(value); //si no cumple lanza excepción, eso nos interesa
     }
 

@@ -1,7 +1,6 @@
 package tv.codely.mooc.courses.application.create;
 
-import tv.codely.mooc.courses.domain.Course;
-import tv.codely.mooc.courses.domain.CourseRepository;
+import tv.codely.mooc.courses.domain.*;
 import tv.codely.shared.domain.Service;
 
 //Se crea en esta carpeta para poder reutilizar desde donde sea este servicio de aplicación, en cualquiera de nuestras aplicaciones, se crea en este bounded context pq tiene que ver con este tema
@@ -14,7 +13,11 @@ public final class CourseCreator {
     }
 
     public void create(CreateCourseRequest request) {
-        Course course = new Course(request.getId(), request.getName(), request.getDuration());
+        Course course = new Course(
+            new CourseId( request.getId() ),
+            new CourseName( request.getName() ),
+            new CourseDuration( request.getDuration() )
+        );
 
         this.repository.save(course);
     }
