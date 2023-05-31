@@ -5,7 +5,7 @@ import tv.codely.mooc.courses.application.create.CreateCourseRequest;
 public class CourseCreatorMother { //request
 
     public static CreateCourseRequest create(CourseId id, CourseName name, CourseDuration duration){
-        return new CreateCourseRequest(id.value(), name.getValue(), duration.getValue());
+        return new CreateCourseRequest(id.getValue(), name.getValue(), duration.getValue());
     }
 
     public static CreateCourseRequest random(){

@@ -9,7 +9,6 @@ import java.util.UUID;
 public abstract class Identifier {
 
     private String value;
-//    private UUID value;
 
     public Identifier(String value){
         ensureValidUuid(value);
@@ -20,7 +19,7 @@ public abstract class Identifier {
         UUID.fromString(value); //si no cumple lanza excepción, eso nos interesa
     }
 
-    public String value(){
+    public String getValue(){
         return value;
 //        return value.toString();
     } //estamos devolviendo el String, no exponemos UUID como de la manera comentada

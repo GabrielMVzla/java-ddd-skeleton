@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 @AllArgsConstructor
-public abstract class StringValueObject {
+public abstract class Stringable {
     private String value;
 }
