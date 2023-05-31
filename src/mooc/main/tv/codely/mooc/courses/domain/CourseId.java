@@ -2,7 +2,9 @@ package tv.codely.mooc.courses.domain;
 
 import tv.codely.shared.domain.Identifier;
 
-public class CourseId extends Identifier {
+import java.io.Serializable;
+
+public class CourseId extends Identifier implements Serializable {
 
     public CourseId(String value){
         super(value);

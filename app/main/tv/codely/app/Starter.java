@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 @SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class) //pcomo queremos utiliar nuestra propia config, excluimos esta clase
 @ComponentScan(
-    includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Repository.class, Service.class}),
+//    includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Repository.class, Service.class}),
     value = {"tv.codely.app", "tv.codely.mooc"})
 public class Starter {
     public static void main(String[] args) {

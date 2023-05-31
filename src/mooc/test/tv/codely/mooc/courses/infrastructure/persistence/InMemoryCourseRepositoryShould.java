@@ -22,7 +22,7 @@ public class InMemoryCourseRepositoryShould extends CoursesModuleInfrastuctureTe
         Course courseExpected = CourseMother.random();
         repository.save( courseExpected );
 
-        System.out.println("from test: " + courseExpected.getId().value() + ", " + courseExpected.getName().getValue() + ", " + courseExpected.getDuration().getValue());
+        System.out.println("from test: " + courseExpected.getId() + ", " + courseExpected.getName().getValue() + ", " + courseExpected.getDuration().getValue());
         Optional<Course> opActualCourse = repository.search( courseExpected.getId() );
 
         Course courseActual = opActualCourse.orElse(new Course());

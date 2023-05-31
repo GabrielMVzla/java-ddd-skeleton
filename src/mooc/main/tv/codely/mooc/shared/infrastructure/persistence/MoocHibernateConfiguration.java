@@ -1,11 +1,14 @@
 package tv.codely.mooc.shared.infrastructure.persistence;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -46,7 +49,6 @@ public class MoocHibernateConfiguration {
 
             for (String file : files) {
                 goodPaths.add(path + module + "/infrastructure/persistence/hibernate/" + file);
-                System.out.println("config hibernate: " + path + module + "/infrastructure/persistence/hibernate/" + file);
             }
         }
 
@@ -60,7 +62,8 @@ public class MoocHibernateConfiguration {
             return new String[0];
         }
 
-        return files;}
+        return files;
+    }
 
     private String[] mappingFilesIn(String path) {
         String[] files = new File(path).list((current, name) -> new File(current, name).getName().contains(".hbm.xml"));
@@ -75,11 +78,10 @@ public class MoocHibernateConfiguration {
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl(
-            "jdbc:mysql://localhost:3306/mooc?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-        dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setDriverClassName("org.h2.Driver");
+        dataSource.setUrl("jdbc:h2:mem:mooc;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"); // Base de datos en memoria H2. Modifica según tu necesidad
+        dataSource.setUsername("sa"); // nombre de usuario por defecto en H2
+        dataSource.setPassword(""); // contraseña vacía por defecto en H2
 
         return dataSource;
     }
@@ -95,9 +97,9 @@ public class MoocHibernateConfiguration {
     private Properties hibernateProperties() {
         //podemos hacerlo con xml, pero ahora no se recomienda, se dice que es un antipatron dentro del mundo de spring: aunque yo he utilizado esto en el properties
         Properties hibernateProperties = new Properties();
-        hibernateProperties.put(AvailableSettings.HBM2DDL_AUTO, "none");
+        hibernateProperties.put(AvailableSettings.HBM2DDL_AUTO, "create");
         hibernateProperties.put(AvailableSettings.SHOW_SQL, "false");
-        hibernateProperties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
+        hibernateProperties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.H2Dialect");
 
         return hibernateProperties;
     }

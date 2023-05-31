@@ -1,5 +1,8 @@
 package tv.codely.mooc.courses.application.create;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
+import org.springframework.transaction.annotation.Transactional;
 import tv.codely.mooc.courses.domain.*;
 import tv.codely.shared.domain.Service;
 
@@ -12,6 +15,8 @@ public final class CourseCreator {
         this.repository = repository;
     }
 
+    //toda query dentro de hibernate ha de ser transactional, quien se debe encargar de la transacción es el service o más bien el command bus pero más adelante,
+    // ya que el caso de uso es el orquestador de servicios de dominio, y cada servicio de dominio puede cambiar diferente estado de diferente tabla en neustra bdd
     public void create(CreateCourseRequest request) {
         Course course = new Course(
             new CourseId( request.getId() ),

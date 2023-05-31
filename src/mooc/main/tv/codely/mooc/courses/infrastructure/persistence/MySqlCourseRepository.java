@@ -1,6 +1,9 @@
 package tv.codely.mooc.courses.infrastructure.persistence;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
 import tv.codely.mooc.courses.domain.Course;
 import tv.codely.mooc.courses.domain.CourseId;
 import tv.codely.mooc.courses.domain.CourseRepository;
@@ -10,7 +13,8 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 //se agregó hibernate dentro de la infrastucture de cada modulo para tenerlo más cerca
-@Service
+@Repository("mysql")
+@Primary
 public class MySqlCourseRepository implements CourseRepository {
     private SessionFactory sessionFactory;
 
@@ -25,6 +29,6 @@ public class MySqlCourseRepository implements CourseRepository {
 
     @Override
     public Optional<Course> search(CourseId id) {
-        return Optional.empty();
+        return Optional.ofNullable(sessionFactory.getCurrentSession().find(Course.class, id));
     }
 }
