@@ -16,7 +16,7 @@ public  class InMemoryCourseRepository implements CourseRepository {
         courses.put(course.getId(), course);
     }
 
-    public Optional<Course> search(String id) {
+    public Optional<Course> search(CourseId id) {
         courses.forEach((k, v) -> System.out.println(k + ": " + v));
         return Optional.ofNullable(courses.get(id));
     }
