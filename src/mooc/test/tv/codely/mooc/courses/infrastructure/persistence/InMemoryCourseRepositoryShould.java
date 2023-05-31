@@ -3,10 +3,7 @@ package tv.codely.mooc.courses.infrastructure.persistence;
 import org.junit.Assert;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import tv.codely.mooc.courses.domain.Course;
-import tv.codely.mooc.courses.domain.CourseDuration;
-import tv.codely.mooc.courses.domain.CourseId;
-import tv.codely.mooc.courses.domain.CourseName;
+import tv.codely.mooc.courses.domain.*;
 
 import java.util.Optional;
 
@@ -15,9 +12,10 @@ public class InMemoryCourseRepositoryShould {
     @Test
     void saveAValidCourse() {
         InMemoryCourseRepository repository = new InMemoryCourseRepository();
+//        Course course = CourseMother.random(); //contra menos sepamos mejor, solo conocemos al vecino
         Course course = new Course(
             new CourseId( "550e8400-e29b-41d4-a716-44665440000" ),
-            new CourseName( "name"),
+            CourseNameMother.random(),
             new CourseDuration( "duration" )
         );
         repository.save(course);
