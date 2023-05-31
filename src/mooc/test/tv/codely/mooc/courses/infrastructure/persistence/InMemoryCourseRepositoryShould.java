@@ -31,7 +31,6 @@ public class InMemoryCourseRepositoryShould extends CoursesModuleInfrastuctureTe
 
     @Test
     void searchNotExistingCourse() {
-
         Optional<Course> opActualCourse = repository.search( CourseIdMother.random() );
 
         assertFalse(opActualCourse.isPresent());

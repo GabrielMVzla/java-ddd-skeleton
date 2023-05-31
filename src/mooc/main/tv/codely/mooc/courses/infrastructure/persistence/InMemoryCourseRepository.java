@@ -10,13 +10,13 @@ import java.util.Optional;
 
 @Repository
 public  class InMemoryCourseRepository implements CourseRepository {
-    private HashMap<String, Course> courses = new HashMap<>();
+    private HashMap<CourseId, Course> courses = new HashMap<>();
 
     public void save(Course course) {
-        courses.put(course.getId().value(), course);
+        courses.put(course.getId(), course);
     }
 
-    public Optional<Course> search(CourseId id) {
+    public Optional<Course> search(String id) {
         courses.forEach((k, v) -> System.out.println(k + ": " + v));
         return Optional.ofNullable(courses.get(id));
     }
