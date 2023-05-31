@@ -13,7 +13,9 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 //se agregó hibernate dentro de la infrastucture de cada modulo para tenerlo más cerca
-@Repository("mysql")
+//@Repository("mysql")
+//@Primary
+@Service
 @Primary
 public class MySqlCourseRepository implements CourseRepository {
     private SessionFactory sessionFactory;

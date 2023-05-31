@@ -1,18 +1,22 @@
 package tv.codely.mooc.courses.infrastructure.persistence;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import tv.codely.mooc.courses.domain.*;
+import tv.codely.mooc.courses.domain.Course;
+import tv.codely.mooc.courses.domain.CourseIdMother;
+import tv.codely.mooc.courses.domain.CourseMother;
 import tv.codely.mooc.courses.infrastructure.persistence.course.module.integration.test.CoursesModuleInfrastuctureTestCase;
 
 import java.util.Optional;
 
-public class InMemoryCourseRepositoryShould extends CoursesModuleInfrastuctureTestCase {
-    //Test de Integración, se prueba la implementación real
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+public class MySqlCourseRepositoryShould extends CoursesModuleInfrastuctureTestCase {
+
     @Test
     void saveAValidCourse() {
         Course course = CourseMother.random();
-        inMemoryCourseRepository.save(course);
+        mySqlCourseRepository.save(course);
         //no hubo falta respuesta con assert, debido a que si lanza excepción quiere decir que hubo entonces error, sino, está everything correcto
     }
 
@@ -20,10 +24,10 @@ public class InMemoryCourseRepositoryShould extends CoursesModuleInfrastuctureTe
     @Test
     void searchAnExistingCourse() {
         Course courseExpected = CourseMother.random();
-        inMemoryCourseRepository.save( courseExpected );
+        mySqlCourseRepository.save( courseExpected );
 
         System.out.println("from test: " + courseExpected.getId() + ", " + courseExpected.getName().getValue() + ", " + courseExpected.getDuration().getValue());
-        Optional<Course> opActualCourse = inMemoryCourseRepository.search( courseExpected.getId() );
+        Optional<Course> opActualCourse = mySqlCourseRepository.search( courseExpected.getId() );
 
         Course courseActual = opActualCourse.orElse(new Course());
         assertEquals(courseExpected, courseActual);
@@ -31,8 +35,9 @@ public class InMemoryCourseRepositoryShould extends CoursesModuleInfrastuctureTe
 
     @Test
     void searchNotExistingCourse() {
-        Optional<Course> opActualCourse = inMemoryCourseRepository.search( CourseIdMother.random() );
+        Optional<Course> opActualCourse = mySqlCourseRepository.search( CourseIdMother.random() );
 
         assertFalse(opActualCourse.isPresent());
     }
+
 }

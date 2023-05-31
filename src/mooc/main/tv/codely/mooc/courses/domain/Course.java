@@ -1,18 +1,23 @@
 package tv.codely.mooc.courses.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 //Curso compuesto por valueObjects, pero CourseId es un identificador
-@Data
+@Entity
+@Table(name = "courses")
+@Getter
+@Setter
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public final class Course  {
 
+    @Id
     private CourseId id;
     private CourseName name;
     private CourseDuration duration;
+
 }

@@ -6,11 +6,13 @@ import org.springframework.stereotype.Repository;
 import tv.codely.mooc.courses.domain.Course;
 import tv.codely.mooc.courses.domain.CourseId;
 import tv.codely.mooc.courses.domain.CourseRepository;
+import tv.codely.shared.domain.Service;
 
 import java.util.HashMap;
 import java.util.Optional;
 
-@Repository("inmemory")
+//@Repository("inmemory")
+@Service
 public  class InMemoryCourseRepository implements CourseRepository {
     private HashMap<CourseId, Course> courses = new HashMap<>();
 
