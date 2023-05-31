@@ -3,20 +3,15 @@ package tv.codely.mooc.courses.infrastructure.persistence;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import tv.codely.mooc.courses.domain.*;
+import tv.codely.mooc.courses.infrastructure.persistence.course.module.integration.test.CoursesModuleInfrastuctureTestCase;
 
 import java.util.Optional;
 
-public class InMemoryCourseRepositoryShould {
+public class InMemoryCourseRepositoryShould extends CoursesModuleInfrastuctureTestCase {
     //Test de Integración, se prueba la implementación real
     @Test
     void saveAValidCourse() {
-        InMemoryCourseRepository repository = new InMemoryCourseRepository();
-//        Course course = CourseMother.random(); //contra menos sepamos mejor, solo conocemos al vecino
-        Course course = new Course(
-            new CourseId( "550e8400-e29b-41d4-a716-44665440000" ),
-            CourseNameMother.random(),
-            new CourseDuration( "duration" )
-        );
+        Course course = CourseMother.random();
         repository.save(course);
         //no hubo falta respuesta con assert, debido a que si lanza excepción quiere decir que hubo entonces error, sino, está everything correcto
     }
@@ -24,16 +19,11 @@ public class InMemoryCourseRepositoryShould {
     //para probar la funcionalidad de que la infraestructura está funcionando correctamente
     @Test
     void searchAnExistingCourse() {
-        InMemoryCourseRepository repository = new InMemoryCourseRepository();
-
-        Course courseExpected = new Course(
-            new CourseId( "550e8400-e29b-41d4-a716-44665440000" ),
-            new CourseName( "name"),
-            new CourseDuration( "duration" )
-        );
+        Course courseExpected = CourseMother.random();
         repository.save( courseExpected );
 
-        Optional<Course> opActualCourse = repository.search("some-id");
+        System.out.println("from test: " + courseExpected.getId().value() + ", " + courseExpected.getName().getValue() + ", " + courseExpected.getDuration().getValue());
+        Optional<Course> opActualCourse = repository.search( courseExpected.getId() );
 
         Course courseActual = opActualCourse.orElse(new Course());
         assertEquals(courseExpected, courseActual);
@@ -41,9 +31,8 @@ public class InMemoryCourseRepositoryShould {
 
     @Test
     void searchNotExistingCourse() {
-        InMemoryCourseRepository repository = new InMemoryCourseRepository();
 
-        Optional<Course> opActualCourse = repository.search("550e8400-e29b-41d4-a716-44665440000");
+        Optional<Course> opActualCourse = repository.search( CourseIdMother.random() );
 
         assertFalse(opActualCourse.isPresent());
     }
