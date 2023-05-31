@@ -2,6 +2,7 @@ package tv.codely.mooc.courses.application.create;
 
 import org.junit.jupiter.api.Test;
 import tv.codely.mooc.courses.domain.*;
+import tv.codely.mooc.courses.infrastructure.persistence.InMemoryCourseRepository;
 
 import static org.mockito.Mockito.*;
 
@@ -10,17 +11,14 @@ final class CourseCreatorShould {
     void createAValidCourse() {
         CourseRepository repository = mock(CourseRepository.class);
         CourseCreator    creator    = new CourseCreator(repository);
+//        Course course = CourseMother.random(); //contra menos sepamos mejor, solo conocemos al vecino
+        CreateCourseRequest courseRequest = CourseCreatorMother.random();
 
-        CreateCourseRequest request = new CreateCourseRequest("some-id", "name", "duration");
-
-        Course course = new Course(
-            new CourseId( request.getId() ),
-            new CourseName( request.getName() ),
-            new CourseDuration( request.getDuration() )
-        );
+        Course course = CourseMother.fromRequest(courseRequest);
+        System.out.println("from test: " + course.getId().value() + ", " + course.getName().getValue() + ", " + course.getDuration().getValue());
 
         //llamar caso de uso
-        creator.create( request );
+        creator.create( courseRequest );
 
         //verifica que se llama "save", eso es lo que estamos verificando, por otro lado se valida que sí se guarda pero ya es en test de integración
         verify(repository, atLeastOnce()).save(course);

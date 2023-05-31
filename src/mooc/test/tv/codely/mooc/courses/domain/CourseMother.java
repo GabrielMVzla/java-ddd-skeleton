@@ -11,8 +11,8 @@ public class CourseMother {
     public static Course fromRequest(CreateCourseRequest request){
         return create(
             CourseIdMother.create(request.getId()),
-            CourseNameMother.create(request.getId()),
-            CourseDurationMother.create(request.getId())
+            CourseNameMother.create(request.getName()),
+            CourseDurationMother.create(request.getDuration())
         );
     }
 

@@ -1,6 +1,5 @@
 package tv.codely.mooc.courses.infrastructure.persistence;
 
-import org.junit.Assert;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import tv.codely.mooc.courses.domain.*;

@@ -7,6 +7,6 @@ public class CourseIdMother {
 
     //Objeto aleatorio
     public static CourseId random(){
-        return create(UuidMother.random());
+        return create(tv.codely.shared.domain.UuidMother.random());
     }
 }

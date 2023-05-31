@@ -18,6 +18,7 @@ public final class CourseCreator {
             new CourseName( request.getName() ),
             new CourseDuration( request.getDuration() )
         );
+//        System.out.println("from CourseCreator: " + course.getId().value() + ", " + course.getName().getValue() + ", " + course.getDuration().getValue());
 
         this.repository.save(course);
     }
