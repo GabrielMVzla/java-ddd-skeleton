@@ -1,8 +1,8 @@
-package tv.codely.app.mooc.controller.health_check;
+package tv.codely.apps.mooc.backend.controller.health_check;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import tv.codely.app.mooc.controller.RequestTestCase;
+import tv.codely.apps.mooc.backend.controller.RequestTestCase;
 
 //Test de Aceptación
 final class HealthCheckGetControllerShould extends RequestTestCase {

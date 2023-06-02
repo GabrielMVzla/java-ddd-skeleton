@@ -1,8 +1,8 @@
-package tv.codely.app.mooc.controller.courses;
+package tv.codely.apps.mooc.backend.controller.courses;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import tv.codely.app.mooc.controller.RequestTestCase;
+import tv.codely.apps.mooc.backend.controller.RequestTestCase;
 
 public final class CoursesPutControllerShould extends RequestTestCase {
     @DisplayName("Valida que no existe dicho curso")

@@ -3,7 +3,7 @@ package tv.codely.mooc.courses.infrastructure.persistence;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import tv.codely.mooc.courses.domain.*;
-import tv.codely.mooc.courses.infrastructure.persistence.course.module.integration.test.CoursesModuleInfrastuctureTestCase;
+import tv.codely.mooc.courses.CoursesModuleInfrastuctureTestCase;
 
 import java.util.Optional;
 

@@ -4,13 +4,15 @@ import org.junit.jupiter.api.Test;
 import tv.codely.mooc.courses.domain.Course;
 import tv.codely.mooc.courses.domain.CourseIdMother;
 import tv.codely.mooc.courses.domain.CourseMother;
-import tv.codely.mooc.courses.infrastructure.persistence.course.module.integration.test.CoursesModuleInfrastuctureTestCase;
+import tv.codely.mooc.courses.CoursesModuleInfrastuctureTestCase;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+@Transactional
 public class MySqlCourseRepositoryShould extends CoursesModuleInfrastuctureTestCase {
 
     @Test

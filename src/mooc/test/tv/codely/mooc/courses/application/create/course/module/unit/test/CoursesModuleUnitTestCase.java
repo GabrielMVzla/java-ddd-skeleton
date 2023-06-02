@@ -1,7 +1,7 @@
 package tv.codely.mooc.courses.application.create.course.module.unit.test;
 
 import org.junit.jupiter.api.BeforeEach;
-import tv.codely.mooc.courses.UnitTestCase;
+import tv.codely.shared.infrastructure.UnitTestCase;
 import tv.codely.mooc.courses.domain.Course;
 import tv.codely.mooc.courses.domain.CourseRepository;
 import static org.mockito.Mockito.*;
