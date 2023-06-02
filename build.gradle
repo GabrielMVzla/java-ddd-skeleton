@@ -123,7 +123,8 @@ bootJar {
 mainClassName = 'tv.codely.app.Starter'
 
 dependencies {
-  compile("org.springframework.boot:spring-boot-starter-web")
+  implementation project(path: ':shared')
+    compile("org.springframework.boot:spring-boot-starter-web")
 
 //  implementation project(":shared")
   implementation project(":backoffice")
