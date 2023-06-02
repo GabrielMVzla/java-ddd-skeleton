@@ -2,7 +2,6 @@ package tv.codely.shared.infrastructure.cli;
 
 import tv.codely.shared.domain.Service;
 
-@Service
 public abstract class ConsoleCommand {
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_RED = "\u001B[31m";
@@ -12,14 +11,14 @@ public abstract class ConsoleCommand {
     abstract public void execute(String[] args);
 
     protected void log(String text) {
-        System.out.println(String.format("%s%s%s", ANSI_GREEN, text, ANSI_RESET));
+        System.out.printf("%s%s%s", ANSI_GREEN, text, ANSI_RESET);
     }
 
     protected void info(String text) {
-        System.out.println(String.format("%s%s%s", ANSI_CYAN, text, ANSI_RESET));
+        System.out.printf("%s%s%s", ANSI_CYAN, text, ANSI_RESET);
     }
 
     protected void error(String text) {
-        System.out.println(String.format("%s%s%s", ANSI_RED, text, ANSI_RESET));
+        System.out.printf("%s%s%s", ANSI_RED, text, ANSI_RESET);
     }
 }

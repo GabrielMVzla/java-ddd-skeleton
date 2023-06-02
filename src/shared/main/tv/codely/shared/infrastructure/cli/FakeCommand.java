@@ -1,6 +1,8 @@
 package tv.codely.shared.infrastructure.cli;
 
-//@Command
+import tv.codely.shared.domain.Service;
+
+@Service
 public class FakeCommand extends ConsoleCommand
 {
     @Override

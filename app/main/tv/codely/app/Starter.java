@@ -18,8 +18,8 @@ public class Starter {
             throw new RuntimeException("There are not enough arguments");
         }
 
-        String  applicationName = args[0];
-        String  commandName     = args[1];
+        String  applicationName = "mooc_backend"; //args[0];
+        String  commandName     = "api";//args[1];
         boolean isApiCommand    = commandName.equals("api");
 
         System.out.println(applicationName);
@@ -70,7 +70,7 @@ public class Starter {
     private static HashMap<String, Class<?>> applications() {
         HashMap<String, Class<?>> applications = new HashMap<>();
 
-        applications.put("mooc", MoocBackendApplication.class);
+        applications.put("mooc_backend", MoocBackendApplication.class);
 
         return applications;
     }
@@ -78,14 +78,11 @@ public class Starter {
     private static Map<String, Map<String, Class<?>>> commands() {
         Map<String, Map<String, Class<?>>> commands = new HashMap<>();
 
-        commands.put("mooc", MoocBackendApplication.commands());
+        commands.put("mooc_backend", MoocBackendApplication.commands());
 
         return commands;
     }
-    private static String commandKey(String contextName, String commandName) {
-        String retorno = String.format("%s.%s", contextName, commandName);
-        return retorno;
-    }
+
     private static Boolean existCommand(String applicationName, String commandName) {
         Map<String, Map<String, Class<?>>> commands = commands();
 
