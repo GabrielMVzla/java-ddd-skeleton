@@ -126,7 +126,7 @@ dependencies {
   implementation project(path: ':shared')
     compile("org.springframework.boot:spring-boot-starter-web")
 
-//  implementation project(":shared")
+  implementation project(":shared")
   implementation project(":backoffice")
   implementation project(":mooc")
 

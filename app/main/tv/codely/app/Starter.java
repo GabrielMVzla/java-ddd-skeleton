@@ -1,8 +1,8 @@
-package tv.codely.apps;
+package tv.codely.app;
 
 import org.springframework.boot.WebApplicationType;
 import org.springframework.context.ConfigurableApplicationContext;
-import tv.codely.apps.mooc.backend.MoocBackendApplication;
+import tv.codely.app.mooc.backend.MoocBackendApplication;
 import tv.codely.shared.infrastructure.cli.ConsoleCommand;
 
 import java.util.Arrays;
@@ -22,6 +22,9 @@ public class Starter {
         String  commandName     = args[1];
         boolean isApiCommand    = commandName.equals("api");
 
+        System.out.println(applicationName);
+        System.out.println(commandName);
+
         ensureApplicationExist(applicationName);
         ensureCommandExist(applicationName, commandName);
 
@@ -37,7 +40,7 @@ public class Starter {
 
         if (!isApiCommand) {
             ConsoleCommand command = (ConsoleCommand) context.getBean(
-                commands().get(commandKey(applicationName, commandName))
+                commands().get(applicationName).get(commandName)
             );
 
             command.execute(Arrays.copyOfRange(args, 2, args.length));
@@ -54,7 +57,7 @@ public class Starter {
         }
     }
     private static void ensureCommandExist(String applicationName, String commandName) {
-        if (!"api".equals(commandName) && !commands().containsKey(commandKey(applicationName, commandName))) {
+        if (!"api".equals(commandName) && !existCommand(applicationName, commandName)) {
             throw new RuntimeException(String.format(
                 "The command <%s> for application <%s> doesn't exist. Valids (application.command):\n- api\n- %s",
                 commandName,
@@ -72,12 +75,21 @@ public class Starter {
         return applications;
     }
 
-    private static Map<String, Class<?>> commands() {
-        Map<String, Class<?>> commands = new HashMap<>();
+    private static Map<String, Map<String, Class<?>>> commands() {
+        Map<String, Map<String, Class<?>>> commands = new HashMap<>();
+
+        commands.put("mooc", MoocBackendApplication.commands());
 
         return commands;
     }
     private static String commandKey(String contextName, String commandName) {
-        return String.format("%s.%s", contextName, commandName);
+        String retorno = String.format("%s.%s", contextName, commandName);
+        return retorno;
     }
+    private static Boolean existCommand(String applicationName, String commandName) {
+        Map<String, Map<String, Class<?>>> commands = commands();
+
+        return commands.containsKey(applicationName) && commands.get(applicationName).containsKey(commandName);
+    }
+
 }
