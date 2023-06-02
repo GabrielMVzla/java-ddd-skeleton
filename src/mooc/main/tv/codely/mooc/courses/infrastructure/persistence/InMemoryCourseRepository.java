@@ -11,8 +11,8 @@ import tv.codely.shared.domain.Service;
 import java.util.HashMap;
 import java.util.Optional;
 
-//@Repository("inmemory")
-@Service
+@Repository("inmemory")
+//@Service
 public  class InMemoryCourseRepository implements CourseRepository {
     private HashMap<CourseId, Course> courses = new HashMap<>();
 

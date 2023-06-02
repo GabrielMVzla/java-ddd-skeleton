@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.stereotype.Repository;
 import tv.codely.shared.domain.Service;
 import tv.codely.shared.infrastructure.cli.*;
 
@@ -13,8 +14,8 @@ import java.util.Map;
 
 @SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class)
 @ComponentScan(
-    includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Service.class),
-    value = {"tv.codely.apps.mooc", "tv.codely.mooc", "tv.codely.shared"}
+    includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Service.class, Repository.class}),
+    value = {"tv.codely.app.mooc", "tv.codely.mooc", "tv.codely.shared"}
 )
 public class MoocBackendApplication {
     public static Map<String, Class<?>> commands() {

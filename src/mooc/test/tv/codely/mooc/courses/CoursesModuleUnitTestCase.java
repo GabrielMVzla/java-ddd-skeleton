@@ -1,4 +1,4 @@
-package tv.codely.mooc.courses.application.create.course.module.unit.test;
+package tv.codely.mooc.courses;
 
 import org.junit.jupiter.api.BeforeEach;
 import tv.codely.shared.infrastructure.UnitTestCase;

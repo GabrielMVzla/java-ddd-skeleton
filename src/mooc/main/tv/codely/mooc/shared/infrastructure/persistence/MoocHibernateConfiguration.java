@@ -98,7 +98,7 @@ public class MoocHibernateConfiguration {
         //podemos hacerlo con xml, pero ahora no se recomienda, se dice que es un antipatron dentro del mundo de spring: aunque yo he utilizado esto en el properties
         Properties hibernateProperties = new Properties();
         hibernateProperties.put(AvailableSettings.HBM2DDL_AUTO, "create");
-        hibernateProperties.put(AvailableSettings.SHOW_SQL, "false");
+        hibernateProperties.put(AvailableSettings.SHOW_SQL, "true");
         hibernateProperties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.H2Dialect");
 
         return hibernateProperties;

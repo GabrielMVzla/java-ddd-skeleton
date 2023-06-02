@@ -1,11 +1,8 @@
-package tv.codely.apps.mooc.backend.controller.courses;
+package tv.codely.app.mooc.backend.controller.courses;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tv.codely.mooc.courses.application.create.CourseCreator;
 import tv.codely.mooc.courses.application.create.CreateCourseRequest;
 
@@ -17,13 +14,18 @@ public final class CoursesPutController {
         this.creator = creator;
     }
 
-    @PutMapping(value = "/courses/{id}")
+    @PutMapping("/courses/{id}")
     public ResponseEntity create(@PathVariable String id, @RequestBody Request request) {
         //con DTO desacoplamos nuestro controlador de servicios de aplicación, usar neustros DTO es beneficioso debido a que hay casos donde se duplica la lógica de comunicación, entonces al utilizar DTOs
         //podemos reutilizarlo, al utilizarlo en diferentes casos de uso que sea requerido, a diferencia de usar un simple Request, transición hacia CQRS poco a poco
         creator.create(new CreateCourseRequest(id, request.name(), request.duration()));
 
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @GetMapping("mensaje")
+    public String mensaje(){
+        return "mensaje hola mundo";
     }
 }
 

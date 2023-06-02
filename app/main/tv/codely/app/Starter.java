@@ -1,8 +1,17 @@
 package tv.codely.app;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.stereotype.Repository;
 import tv.codely.app.mooc.backend.MoocBackendApplication;
+import tv.codely.shared.domain.Service;
 import tv.codely.shared.infrastructure.cli.ConsoleCommand;
 
 import java.util.Arrays;
@@ -14,12 +23,15 @@ import java.util.Map;
 
 public class Starter {
     public static void main(String[] args) {
-        if (args.length < 2) {
-            throw new RuntimeException("There are not enough arguments");
-        }
 
-        String  applicationName = "mooc_backend"; //args[0];
-        String  commandName     = "api";//args[1];
+        String  applicationName = "mooc_backend";
+        String  commandName     = "api";
+
+//        if (args.length < 2) {
+//            throw new RuntimeException("There are not enough arguments");
+//        }
+//        String  applicationName = args[0];
+//        String  commandName     = args[1];
         boolean isApiCommand    = commandName.equals("api");
 
         System.out.println(applicationName);

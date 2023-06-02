@@ -2,7 +2,7 @@ package tv.codely.mooc.courses.application.create;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tv.codely.mooc.courses.application.create.course.module.unit.test.CoursesModuleUnitTestCase;
+import tv.codely.mooc.courses.CoursesModuleUnitTestCase;
 import tv.codely.mooc.courses.domain.*;
 
 final class CourseCreatorShould extends CoursesModuleUnitTestCase {
